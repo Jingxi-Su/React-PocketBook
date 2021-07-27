@@ -10,7 +10,6 @@ import Statistics from "./views/Statistics";
 import Tags from "./views/Tags";
 import NoMatch from "./views/NoMatch";
 
-
 function App() {
     return (
         <Router>
