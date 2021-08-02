@@ -22,16 +22,17 @@ const Wrapper = styled.section`
 `
 
 const CategorySection: React.FunctionComponent = () => {
-    const categoryMap={'-':'支出','+':'收入'}
-    type Keys=keyof typeof categoryMap
+    const categoryMap = {'-': '支出', '+': '收入'}
+    type Keys = keyof typeof categoryMap
     const [categoryList] = useState<Keys[]>(['-', '+'])
     //相当于const [categoryList] = useState<('-'|'+')[]>(['-', '+'])
     const [category, setCategory] = useState('-')
     return (
         <Wrapper>
             <ul>
-                {categoryList.map(c=>
-                    <li className={category === c ? 'selected' : ''}
+                {categoryList.map(c =>
+                    <li key={c}
+                        className={category === c ? 'selected' : ''}
                         onClick={() => setCategory(c)}>
                         {categoryMap[c]}
                     </li>
