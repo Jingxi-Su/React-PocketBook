@@ -37,9 +37,15 @@ const Wrapper = styled.section`
 ;
 
 `
-const TagsSection: React.FunctionComponent = () => {
+
+type Props = {
+    value: string[];
+    onChange: (selected: string[]) => void
+}//加入新的类型selected
+
+const TagsSection: React.FunctionComponent<Props> = (props) => {
     const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
-    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    const selectedTags = props.value;
     const onAddTag = () => {
         const tagName = window.prompt('新标签名称为：');
         if (tagName !== null) {
@@ -49,10 +55,10 @@ const TagsSection: React.FunctionComponent = () => {
     const onToggleTag = (tag: string) => {
         const index = selectedTags.indexOf(tag);
         if (index >= 0) {
-            setSelectedTags(selectedTags.filter(t => t !== tag));
+            props.onChange(selectedTags.filter(t => t !== tag));
             //如果tag已被选中，就复制所有没有被选中的tag，作为新的selectedTags
         } else {
-            setSelectedTags([...selectedTags, tag])
+            props.onChange([...selectedTags, tag])
         }
     }
     const getClass = (tag: string) => selectedTags.indexOf(tag) >= 0 ? 'selected' : '';
