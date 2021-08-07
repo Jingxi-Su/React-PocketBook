@@ -24,7 +24,7 @@ function App() {
                     <Route exact path="/tags/:tag">//精准匹配，不要模糊匹配
                         <TagEdit/>
                     </Route>
-                    <Route exact path="/tags" exact={true}>
+                    <Route exact path="/tags">
                         <Tags/>
                     </Route>
                     <Route exact path="/money">
