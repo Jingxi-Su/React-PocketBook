@@ -21,7 +21,7 @@ function App() {
         <AppWrapper>
             <Router>
                 <Switch>
-                    <Route exact path="/tags/:tag">//精准匹配，不要模糊匹配
+                    <Route exact path="/tags/:tag">
                         <TagEdit/>
                     </Route>
                     <Route exact path="/tags">
@@ -33,7 +33,7 @@ function App() {
                     <Route exact path="/statistics">
                         <Statistics/>
                     </Route>
-                    <Redirect exact from={"/"} to={"/money"}/>//默认路由
+                    <Redirect exact from={"/"} to={"/money"}/>
                     <Route path="*">
                         <NoMatch/>
                     </Route>
