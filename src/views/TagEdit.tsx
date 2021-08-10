@@ -1,6 +1,6 @@
 import React from "react";
 import {useTags} from "../useTags";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import Layout from "../components/Layout";
 import Icon from "../components/Icon";
 import {Button} from "../components/Button";
@@ -50,8 +50,9 @@ const TagEdit: React.FunctionComponent = () => {
             </Center>
         </div>
     )
-    const onClickBack=()=>{
-        window.history.back()
+    const history = useHistory()
+    const onClickBack = () => {
+        history.goBack()
     }
     return (
         <Layout>
