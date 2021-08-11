@@ -9,6 +9,7 @@ const useUpdate = (fn: () => void, deps: any[]) => {
         if (count.current > 1) {
             fn()
         }
+        // eslint-disable-next-line
     }, deps);//这里必须是不可变数据
 }
 export {useUpdate}
