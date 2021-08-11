@@ -61,7 +61,7 @@ const TagEdit: React.FunctionComponent = () => {
                 <span>编辑标签</span>
                 <Icon/>
             </Topbar>
-            {tag ? tagContent(tag) : <Center>标签不存在</Center>}
+            {tag ? tagContent(tag) : <Center><Space/><Space/><Space/>标签不存在</Center>}
         </Layout>
     )
 }
