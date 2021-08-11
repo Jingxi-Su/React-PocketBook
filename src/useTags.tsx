@@ -1,15 +1,24 @@
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {createId} from "./lib/createId";
-
-const defaultTags = [//防止每次调用，id都会重新生成
-    {id: createId(), name: '衣'},
-    {id: createId(), name: '食'},
-    {id: createId(), name: '住'},
-    {id: createId(), name: '行'}
-]
+import {useUpdate} from "./hooks/useUpdate";
 
 const useTags = () => {//自定义hook必须use开头
-    const [tags, setTags] = useState<{ id: number; name: string }[]>(defaultTags);
+    const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
+    useEffect(() => {
+        let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]')
+        if (localTags.length === 0) {
+            localTags = [
+                {id: createId(), name: '衣'},
+                {id: createId(), name: '食'},
+                {id: createId(), name: '住'},
+                {id: createId(), name: '行'}
+            ]
+        }
+        setTags(localTags)
+    }, [])
+    useUpdate(() => {
+        window.localStorage.setItem('tags', JSON.stringify(tags))
+    }, [tags])//组件挂载时执行
     const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
     const findTagIndex = (id: number) => {
         let result = -1;
@@ -27,7 +36,13 @@ const useTags = () => {//自定义hook必须use开头
     const deleteTag = (id: number) => {
         setTags(tags.filter(tag => tag.id !== id))
     }
-    return {tags, setTags, findTag, updateTag, findTagIndex, deleteTag}//后期可以研究为什么必须导出对象而不是数组
+    const addTag = () => {
+        const tagName = window.prompt('新标签名称为：');
+        if (tagName !== null && tagName !== '') {
+            setTags([...tags, {id: createId(), name: tagName}]);
+        }
+    };
+    return {tags, setTags, findTag, updateTag, findTagIndex, deleteTag, addTag}//后期可以研究为什么必须导出对象而不是数组
 }
 
 export {useTags}
