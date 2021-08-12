@@ -42,7 +42,11 @@ const useTags = () => {//自定义hook必须use开头
             setTags([...tags, {id: createId(), name: tagName}]);
         }
     };
-    return {tags, setTags, findTag, updateTag, findTagIndex, deleteTag, addTag}//后期可以研究为什么必须导出对象而不是数组
+    const getName = (id: number) => {
+        const tag = tags.filter(t => t.id === id)[0]
+        return tag ? tag.name : ''
+    }
+    return {tags, setTags, findTag, updateTag, findTagIndex, deleteTag, addTag, getName}//后期可以研究为什么必须导出对象而不是数组
 }
 
 export {useTags}
