@@ -1,6 +1,6 @@
 import {useEffect, useRef} from "react";
 
-const useUpdate = (fn: () => void, deps: any[]) => {
+const useUpdate = (fn: () => void, dependency: any[]) => {
     const count = useRef(0)
     useEffect(() => {
         count.current += 1;
@@ -9,7 +9,6 @@ const useUpdate = (fn: () => void, deps: any[]) => {
         if (count.current > 1) {
             fn()
         }
-        // eslint-disable-next-line
-    }, deps);//这里必须是不可变数据
+    }, [fn, dependency]);//这里必须是不可变数据
 }
 export {useUpdate}

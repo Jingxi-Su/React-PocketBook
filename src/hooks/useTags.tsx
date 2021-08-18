@@ -18,7 +18,7 @@ const useTags = () => {//自定义hook必须use开头
     }, [])
     useUpdate(() => {
         window.localStorage.setItem('tags', JSON.stringify(tags))
-    }, [tags])//组件挂载时执行
+    }, tags)//组件挂载时执行
     const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
     const findTagIndex = (id: number) => {
         let result = -1;
