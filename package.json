@@ -1,6 +1,7 @@
 {
   "name": "morney-13",
   "version": "0.1.0",
+  "homepage":"https://jingxi-su.github.io/React-PocketBookWebsite/",
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
